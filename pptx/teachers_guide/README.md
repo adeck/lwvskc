@@ -9,3 +9,12 @@ A teacher's guide is speaker notes to accompany a powerpoint, and needs four dif
 3. Screenshots of slides -- For each slide in the powerpoint, need a picture of that slide.
 4. Speaker notes -- From the powerpoint. Each slide has speaker notes, but they're hidden by default, especially in presenter view when the teacher is actually presenting the slideshow.
 
+## How do I use this?
+
+Assuming you have Python3 installed, run:
+
+```
+./run.sh
+```
+
+

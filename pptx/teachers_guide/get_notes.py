@@ -1,25 +1,32 @@
 #!/usr/bin/env python3
 #
-#   TODO
+#   TODO -- add docstring
+#   TODO -- use click
 #
+
+from sys import argv
 
 from pptx import Presentation
 
-PPTX_PATH = "./TODO"
+notes_dict = {}
 
-prs = Presentation(PPTX_PATH)
+def main(pptx_path):
+    prs = Presentation(pptx_path)
+    for i, slide in enumerate(prs.slides):
+        if not slide.has_notes_slide:
+            continue
+        cur_frame = slide.notes_slide.notes_text_frame
+        if cur_frame.text.strip() == '':
+            continue
+        notes_dict[i] = cur_frame
+#    for k, v in notes_dict.items():
+#        print(f"slide {k} notes: {v.text}")
+    print(f"{len(notes_dict)} of {len(prs.slides)} slides have text.")
+    print(f"Specifically: {sorted(notes_dict.keys())}")
 
-for i, slide in enumerate(prs.slides):
-    print(i)
-    if not slide.has_notes_slide:
-        print(f"{i} has no notes")
-        continue
-    cur_notes_frame = slide.notes_slide.notes_text_frame
-    print(f"{i} has notes: {cur_notes_frame}")
-    print(f"{i} has notes text: {cur_notes_frame.text}")
-    print(f"{i} has notes paragraphs:")
-    for paragraph in cur_notes_frame.paragraphs:
-        for run in paragraph.runs:
-            print(run.text)
 
+if __name__ == '__main__':
+    assert len(argv) == 2
+    pptx_path = argv[1]
+    main(pptx_path)
 

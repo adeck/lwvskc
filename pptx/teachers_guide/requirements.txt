@@ -1,1 +1,1 @@
-python-pptx
+python-pptx>=0.6
